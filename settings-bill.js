@@ -1,9 +1,9 @@
 module.exports = function SettingsBill() {
 
-    let smsCost = 1.65;
-    let callCost = 0.75;
-    let warningLevel = 15;
-    let criticalLevel = 20; 
+    let smsCost 
+    let callCost 
+    let warningLevel 
+    let criticalLevel
 
     let actionList = [];
 
