@@ -1,9 +1,9 @@
 module.exports = function SettingsBill() {
 
-    let smsCost;
-    let callCost;
-    let warningLevel;
-    let criticalLevel; 
+    let smsCost = 1.65;
+    let callCost = 0.75;
+    let warningLevel = 15;
+    let criticalLevel = 20; 
 
     let actionList = [];
 
@@ -111,6 +111,15 @@ module.exports = function SettingsBill() {
         return total >= criticalLevel;
     }
 
+    function addClasses(){
+        var className = "";
+        if(hasReachedCriticalLevel()){
+            return className = "critical";
+        } else if(hasReachedWarningLevel()){
+            return className = "warning";
+        }
+    }
+
     return {
         setSettings,
         getSettings,
@@ -119,6 +128,7 @@ module.exports = function SettingsBill() {
         actionsFor,
         totals,
         hasReachedWarningLevel,
-        hasReachedCriticalLevel
+        hasReachedCriticalLevel,
+        addClasses
     }
 }
