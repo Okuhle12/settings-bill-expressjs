@@ -1,12 +1,12 @@
-const express = require("express")
-const exphbs  = require("express-handlebars");
-const SettingsBill = require("./settings-bill");
+const express = require('express')
+const exphbs  = require('express-handlebars');
+const SettingsBill = require('./settings-bill');
 const bodyParser = require('body-parser')
 const moment = require('moment'); 
 moment().format(); 
 
 const handlebarSetup = exphbs({
-    partialsDir: "./views/partials",
+    partialsDir: './views/partials',
     viewPath: './views',
     layoutsDir: './views/layouts'
   });
@@ -17,10 +17,10 @@ const app = express();
 const settingsBill= SettingsBill();
 
 app.engine('handlebars', handlebarSetup);
-app.set("view engine", "handlebars");
+app.set('view engine", "handlebars');
 
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 
 app.use(bodyParser.json()) //For JSON requests)
@@ -87,5 +87,5 @@ res.render('actions', {actions: actionTypeMade});
 const PORT = process.env.PORT || 3007
 
 app.listen(PORT, function(){
-console.log("App started at port:",PORT)
+console.log('App started at port:',PORT)
 });
