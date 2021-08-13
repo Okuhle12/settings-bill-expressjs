@@ -2,6 +2,8 @@ const express = require("express")
 const exphbs  = require("express-handlebars");
 const SettingsBill = require("./settings-bill");
 const bodyParser = require('body-parser')
+const moment = require('moment'); 
+moment().format(); 
 
 const handlebarSetup = exphbs({
     partialsDir: "./views/partials",
@@ -21,24 +23,23 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 
-// app.use(express.json()) //For JSON requests
-// app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json()) //For JSON requests)
 app.use(bodyParser.urlencoded({extended: false}));
 
 
 
-app.get("/", function(req, res){
-    res.render("index", {
+app.get('/', function(req, res){
+    res.render('index', {
         
     settings: settingsBill.getSettings(),
-    totals: settingsBill.totals()
-    
+    totals: settingsBill.totals(),
+    addColor: settingsBill.addClasses()
+
         
 });
 });
 
-app.post("/settings", function(req, res){
+app.post('/settings', function(req, res){
 
      settingsBill.setSettings({
      callCost: req.body.callCost,
@@ -46,31 +47,41 @@ app.post("/settings", function(req, res){
      warningLevel: req.body.warningLevel,
      criticalLevel: req.body.criticalLevel,
     })
-    console.log(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,")
-    console.log(settingsBill.getSettings())
-    res.redirect("/");   
+    res.redirect('/');   
 });
 
-app.post("/action", function(req, res){
+app.post('/action', function(req, res){
 
 settingsBill.recordAction(req.body.actionType),
-res.redirect("/");
+res.redirect('/');
 
 });
 
-app.get("/actions", function(req, res){ 
 
-  res.render("actions", {actions: settingsBill.actions()});
+app.get('/actions', function(req, res){
+  let actionsMade = settingsBill.actions();
+  actionsMade.forEach(element => {
+    
+  element.recordTime = moment(element.timestamp).fromNow()
+ 
+});
 
-
+res.render('actions' , {actions: actionsMade});
 
 });
 
-app.get("/actions/:type", function(req, res){
-  const actionType = req.params.actionType;
-  res.render("actions", {actions: settingsBill.actionsFor()});
+app.get('/actions/:actionType', function(req, res){
+const actionType = req.params.actionType;
+const actionTypeMade = settingsBill.actionsFor(actionType);
+actionTypeMade.forEach(element => {
+  element.recordTime = moment(element.timestamp).fromNow()
 
 });
+
+res.render('actions', {actions: actionTypeMade});
+
+});
+
 
 
 const PORT = process.env.PORT || 3007

@@ -1,9 +1,9 @@
 module.exports = function SettingsBill() {
 
-    let smsCost 
-    let callCost 
-    let warningLevel 
-    let criticalLevel
+    let smsCost ;
+    let callCost ;
+    let warningLevel;
+    let criticalLevel;
 
     let actionList = [];
 
@@ -25,8 +25,10 @@ module.exports = function SettingsBill() {
     }
 
     function recordAction(action) {
+        var stoppingGrandtotal = action == 'sms' ? smsCost + grandTotal(): callCost + grandTotal()
 
-        let cost = 0;
+        if( stoppingGrandtotal <= criticalLevel){
+            let cost = 0;
         if (action === 'sms'){
             cost = smsCost;
         }
@@ -34,14 +36,20 @@ module.exports = function SettingsBill() {
             cost = callCost;
         }
 
+        if(action !== undefined){
         actionList.push({
             type: action,
             cost,
             timestamp: new Date()
         });
+
+        }
+        
     }
+}
 
     function actions(){
+
         return actionList;
     }
 
@@ -76,12 +84,7 @@ module.exports = function SettingsBill() {
         }
         return total;
 
-        // the short way using reduce and arrow functions
-
-        // return actionList.reduce((total, action) => { 
-        //     let val = action.type === type ? action.cost : 0;
-        //     return total + val;
-        // }, 0);
+      
     }
 
     function grandTotal() {
@@ -92,18 +95,14 @@ module.exports = function SettingsBill() {
         let smsTotal = getTotal('sms')
         let callTotal = getTotal('call')
         return {
-            smsTotal,
-            callTotal,
-            grandTotal : grandTotal()
+            smsTotal: smsTotal.toFixed(2),
+            callTotal:callTotal.toFixed(2),
+            grandTotal : grandTotal().toFixed(2)
         }
     }
 
     function hasReachedWarningLevel(){
-        const total = grandTotal();
-        const reachedWarningLevel = total >= warningLevel 
-            && total < criticalLevel;
-
-        return reachedWarningLevel;
+        return warningLevel;
     }
 
     function hasReachedCriticalLevel(){
@@ -111,12 +110,15 @@ module.exports = function SettingsBill() {
         return total >= criticalLevel;
     }
 
+   
+
     function addClasses(){
-        var className = "";
+        
         if(hasReachedCriticalLevel()){
-            return className = "critical";
-        } else if(hasReachedWarningLevel()){
-            return className = "warning";
+            return "danger";
+        } 
+        else if(grandTotal() >= hasReachedWarningLevel()){
+            return  "warning";
         }
     }
 

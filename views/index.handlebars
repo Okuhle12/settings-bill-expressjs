@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/style.css">
+    {{!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+    <title></title>
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
@@ -59,22 +59,24 @@
                       <td>
                         <a href="/actions">Total</a>
                       </td>
-                      <td> R<span class="totalSettings">{{totals.grandTotal}}</span> </td>
+                      <td> R<span class="totalSettings {{addColor}}">{{totals.grandTotal}}</span> </td>
                     </tr>
                   </table>
 
             </div>
             <div class="six columns">
               <h5>Settings</h5>
+             <form action="/settings" method="POST">
               <label for="exampleEmailInput">Call cost</label>
-              <input class="u-full-width callCostSetting" type="number" step=".10" placeholder="eg. 2.55" value="{{settings.callCost}}">
+              <input class="u-full-width callCostSetting" type="number" step=".10" placeholder="eg. 2.55" name="callCost" value="{{settings.callCost}}">
               <label for="exampleEmailInput">SMS cost</label>
-              <input class="u-full-width smsCostSetting" type="number" step=".10" placeholder="eg. 0.65" value="{{settings.smsCost}}">
+              <input class="u-full-width smsCostSetting" type="number" step=".10" placeholder="eg. 0.65" name="smsCost" value="{{settings.smsCost}}">
               <label for="">Warning level</label>
-              <input class="u-full-width warningLevelSetting " type="number" step=".10" placeholder="eg. 30.00" class="warningLevel" value="{{settings.warningLevel}}"   >
+              <input class="u-full-width warningLevelSetting " type="number" step=".10" placeholder="eg. 30.00" name="warningLevel" class="warningLevel" value="{{settings.warningLevel}}"   >
               <label for="">Critical level</label>
-              <input class="u-full-width criticalLevelSetting" type="number" step=".10" placeholder="eg. 65.00" value="{{settings.criticalLevel}}" >
+              <input class="u-full-width criticalLevelSetting" type="number" step=".10" placeholder="eg. 65.00" name="criticalLevel" value="{{settings.criticalLevel}}" >
               <button class="button-primary updateSettings" type="submit" name="button">Update settings</button>
+             </form>
 
             </div>
           </div>
