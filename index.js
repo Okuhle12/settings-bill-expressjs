@@ -23,7 +23,7 @@ app.set('view engine", "handlebars');
 app.use(express.static('public'));
 
 
-app.use(bodyParser.json()) //For JSON requests)
+app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({extended: false}));
 
 
@@ -88,4 +88,4 @@ const PORT = process.env.PORT || 3007
 
 app.listen(PORT, function(){
 console.log('App started at port:',PORT)
-});
+}); 
