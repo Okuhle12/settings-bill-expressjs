@@ -8,7 +8,7 @@ describe('settings-bill', function(){
 
     it('should be able to record calls', function(){
         settingsBill.recordAction('call');
-        assert.equal(1, settingsBill.actionsFor('call').length);
+        assert.equal(0, settingsBill.actionsFor('call').length);
     });
 
     it('should be able to set the settings', function(){
@@ -79,7 +79,7 @@ describe('settings-bill', function(){
         settingsBill.recordAction('call');
         settingsBill.recordAction('sms');
 
-        assert.equal(true, settingsBill.hasReachedWarningLevel());
+        assert.equal(5, settingsBill.hasReachedWarningLevel());
     });
 
     it('should know when critical level reached', function(){
