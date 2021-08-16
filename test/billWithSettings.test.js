@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const SettingsBill = require('../bill-with');
+const SettingsBill = require('../settings-bill');
 
 describe('settings-bill', function(){
 
