@@ -2,7 +2,7 @@
   "name": "settings-bill-expressjs",
   "version": "1.0.0",
   "description": "[![Build Status](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs.svg?branch=main)](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs)",
-  "main": "bill-with.js",
+  "main": "settings-bill.js",
   "directories": {
     "test": "test"
   },
