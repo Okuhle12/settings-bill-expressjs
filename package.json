@@ -1,7 +1,6 @@
 {
   "name": "settings-bill-expressjs",
   "version": "1.0.0",
-  "description": "[![Build Status](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs.svg?branch=main)](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs)",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -31,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/Okuhle12/settings-bill-expressjs/issues"
   },
-  "homepage": "https://github.com/Okuhle12/settings-bill-expressjs#readme"
+  "homepage": "https://github.com/Okuhle12/settings-bill-expressjs#readme",
+  "description": "[![Build Status](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs.svg?branch=master)](https://www.travis-ci.com/Okuhle12/settings-bill-expressjs)"
 }
