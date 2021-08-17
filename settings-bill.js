@@ -1,17 +1,20 @@
 module.exports = function SettingsBill() {
 
-    let smsCost ;
-    let callCost ;
+    let smsCost;
+    let callCost;
     let warningLevel;
     let criticalLevel;
 
     let actionList = [];
 
     function setSettings (settings) {
-        smsCost = Number(settings.smsCost);
-        callCost = Number(settings.callCost);
-        warningLevel = settings.warningLevel;
-        criticalLevel = settings.criticalLevel;
+      
+            smsCost = Number(settings.smsCost);
+            callCost = Number(settings.callCost);
+            warningLevel = settings.warningLevel;
+            criticalLevel = settings.criticalLevel;
+     
+       
     }
 
     function getSettings
@@ -25,25 +28,28 @@ module.exports = function SettingsBill() {
     }
 
     function recordAction(action) {
-        var stoppingGrandtotal = action == 'sms' ? smsCost + grandTotal(): callCost + grandTotal()
+        
+            var stoppingGrandtotal = action == 'sms' ? smsCost + grandTotal(): callCost + grandTotal()
 
-        if( stoppingGrandtotal <= criticalLevel){
-            let cost = 0;
-        if (action === 'sms'){
-            cost += smsCost;
-        }
-        else if (action === 'call'){
-            cost += callCost;
-        }
-
-        if(action !== undefined){
-        actionList.push({
-            type: action,
-            cost,
-            timestamp: new Date()
-        });
-
-        }
+            if( stoppingGrandtotal <= criticalLevel){
+                let cost = 0;
+            if (action === 'sms'){
+                cost += smsCost;
+            }
+            else if (action === 'call'){
+                cost += callCost;
+            }
+     
+            if(action !== undefined && smsCost !== 0 && callCost !== 0){
+            actionList.push({
+                type: action,
+                cost,
+                timestamp: new Date()
+            });
+    
+            }
+        
+       
         
     }
 }
