@@ -30,10 +30,10 @@ module.exports = function SettingsBill() {
         if( stoppingGrandtotal <= criticalLevel){
             let cost = 0;
         if (action === 'sms'){
-            cost = smsCost;
+            cost += smsCost;
         }
         else if (action === 'call'){
-            cost = callCost;
+            cost += callCost;
         }
 
         if(action !== undefined){

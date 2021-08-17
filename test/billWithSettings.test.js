@@ -79,7 +79,7 @@ describe('settings-bill', function(){
         settingsBill.recordAction('call');
         settingsBill.recordAction('sms');
 
-        assert.equal(true, settingsBill.hasReachedWarningLevel());
+        assert.equal(5, settingsBill.hasReachedWarningLevel());
     });
 
     it('should know when critical level reached', function(){
