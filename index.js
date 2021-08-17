@@ -2,25 +2,32 @@ const express = require('express')
 const exphbs  = require('express-handlebars');
 const SettingsBill = require('./settings-bill');
 const bodyParser = require('body-parser')
+const app = express();
+const settingsBill= SettingsBill();
 const moment = require('moment'); 
 moment().format(); 
 
-const handlebarSetup = exphbs({
-    partialsDir: './views/partials',
-    viewPath: './views',
-    layoutsDir: './views/layouts'
-  });
+// const handlebarSetup = exphbs({
+//     partialsDir: './views/partials',
+//     viewPath: './views',
+//     layoutsDir: './views/layouts'
+//   });
   
 
-const app = express();
+//setup handlebars ,Body-parser and public
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+app.engine('handlebars', exphbs({ layoutsDir: './views/layouts' }));
 
-const settingsBill= SettingsBill();
 
-app.engine('handlebars', handlebarSetup);
-app.set('view engine", "handlebars');
+// app.engine('handlebars', handlebarSetup);
+// app.set('view engine", "handlebars');
 
 
 app.use(express.static('public'));
+
+
+
 
 
 app.use(bodyParser.json()) 

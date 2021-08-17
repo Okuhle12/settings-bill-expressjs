@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33"
+    "moment-timezone": "^0.5.33",
+    "session": "^0.1.0"
   },
   "repository": {
     "type": "git",
