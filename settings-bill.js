@@ -31,7 +31,7 @@ module.exports = function SettingsBill() {
         
             var stoppingGrandtotal = action == 'sms' ? smsCost + grandTotal(): callCost + grandTotal()
 
-            if( stoppingGrandtotal <= criticalLevel){
+            if(  hasReachedCriticalLevel() <= criticalLevel){
                 let cost = 0;
             if (action === 'sms'){
                 cost += smsCost;
